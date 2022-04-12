@@ -4,12 +4,10 @@ import (
 	"log"
 	"os"
 
-	"github.com/anish700/ecommerce/database"
-
-	// "github.com/anish700/ecommerce/middleware"
-
-	"github.com/anish700/ecommerce/routes"
-
+	"ecommerce_go/database"
+	//"ecommerce_go/middleware"
+	"ecommerce_go/controllers"
+	"ecommerce_go/routes"
 	"github.com/gin-gonic/gin"
 )
 
@@ -19,7 +17,7 @@ func main() {
 		port = "8000"
 	}
 	app := controllers.newApplication(database.ProductData(database.Client, "Products"), database.UserData(database.Client, "Users"))
-	router := gin.new()
+	router := gin.New()
 	router.Use(gin.Logger())
 
 	routes.UserRoutes(router)
